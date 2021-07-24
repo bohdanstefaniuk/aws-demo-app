@@ -35,11 +35,13 @@ namespace ImagesApp
 			context.Database.Migrate();
 			app.UseDeveloperExceptionPage();
 			app.UseRouting();
+			
 			app.UseSwagger();
 			app.UseSwaggerUI(options =>
 			{
 				options.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger");
 			});
+			
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();

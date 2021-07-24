@@ -11,15 +11,18 @@ namespace ImagesApp.Data
 	{
 		private readonly AmazonS3Client _s3Client;
 		private readonly string _bucketName;
-		
+
 		public S3Repository(IOptions<AwsSettings> options)
 		{
 			_bucketName = options.Value.BucketName;
-			_s3Client = new AmazonS3Client(
-				options.Value.AccessKey, 
-				options.Value.SecretKey, RegionEndpoint.EUCentral1);
+
+			// _s3Client = new AmazonS3Client(
+			// 	options.Value.AccessKey, 
+			// 	options.Value.SecretKey, RegionEndpoint.EUCentral1);
+
+			_s3Client = new AmazonS3Client(RegionEndpoint.EUCentral1);
 		}
-		
+
 		public async Task UploadFileToS3(string fileName, Stream fileStream)
 		{
 			await _s3Client.PutObjectAsync(new PutObjectRequest
